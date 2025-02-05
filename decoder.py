@@ -7,13 +7,13 @@ import argparse
 
 def banner():
     print("\n")
-    print("X==========================================================X")
+    print(" ========================================================== ")
     print("| ██████  ███████  ██████  ██████  ██████  ███████ ██████  |")
     print("| ██   ██ ██      ██      ██    ██ ██   ██ ██      ██   ██ |")
     print("| ██   ██ █████   ██      ██    ██ ██   ██ █████   ██████  |")
     print("| ██   ██ ██      ██      ██    ██ ██   ██ ██      ██   ██ |") 
     print("| ██████  ███████  ██████  ██████  ██████  ███████ ██   ██ |")
-    print("X=====================-by Hanamaru-========================X")
+    print(" =====================-by Hanamaru-======================== ")
     print("")                                                     
 
 def decode_html(text):
@@ -29,20 +29,53 @@ def decode_base64(text):
     decode_text = decode_text_bytes.decode("utf-8")
     return decode_text
 
+def decode_hex(text):
+    decode_text_bytes = bytes.fromhex(text)
+    decode_text = decode_text_bytes.decode("utf-8")
+    return decode_text
+
 def choose_decode(text, format):
     match format:
         case 'base64':
-            print(f"Your text here => {decode_base64(text)}")
+            output_text = f"| Your text here => {decode_base64(text)} |"
+            board = "-" * len(output_text)
+            print(board)
+            print(output_text)
+            print(board)
             print()
+
         case 'html':
-            print(f"Your text here => {decode_html(text)}")
+            output_text = f"| Your text here => {decode_html(text)} |"
+            board = "-" * len(output_text)
+            print(board)
+            print(output_text)
+            print(board)
             print()
+
         case 'url':
-            print(f"Your text here => {decode_url(text)}")
+            output_text = f"| Your text here => {decode_url(text)} |"
+            board = "-" * len(output_text)
+            print(board)
+            print(output_text)
+            print(board)
             print()
+
+        case 'hex':
+            output_text = f"| Your text here => {decode_hex(text)} |"
+            board = "-" * len(output_text)
+            print(board)
+            print(output_text)
+            print(board)
+            print()
+
         case _:
-            print("Error: Unknown Format!")
-    pass
+            output_text = "| Erro: Unknow Format! |"
+            board = "-" * len(output_text)
+            print(board)
+            print(output_text)
+            print(board)
+            print()
+            
 
 def main():
     parser = argparse.ArgumentParser(description="Program to decode any formats to utf-8 and ASCII")
